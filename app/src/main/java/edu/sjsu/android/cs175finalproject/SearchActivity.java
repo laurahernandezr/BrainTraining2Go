@@ -7,20 +7,25 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashSet;
 import java.util.Random;
 
 public class SearchActivity extends AppCompatActivity {
     private int score = 0;
     private int cur_round = 0;
     private final int MAX_ROUNDS = 5;
-    private final int MAX_T = 25;
-    private final int MAX_DISTRACTIONS = MAX_T - 1;
 
-    private final int BLUE_IMG_ID = 0;
-    private final int ORANGE_IMG_ID = 1;
-    private final int REVERSE_ORANGE_IMG_ID = 2;
+    private final int MAX_T = 25;
+    private final int MAX_ORANGE_T = 1;
+    private final int MAX_REV_ORANGE_T = (int)((MAX_T - MAX_ORANGE_T) * 0.75);
+    private final int MAX_BLUE_T = MAX_T - MAX_REV_ORANGE_T;
+    private final int SPAWN_CHANCE = 50; //percent that a T will spawn
+    private final int SPAWN_CHANGE_DISTRACTION = 80;
+
+    private Random rand = new Random();
 
     private ImageView[] views_arr = new ImageView[MAX_T];
+    private HashSet<Integer> available_views = new HashSet<>();
 
     private int distractions;
     private boolean orange_t = false;
@@ -34,46 +39,68 @@ public class SearchActivity extends AppCompatActivity {
         for(int i = 0; i < MAX_T; i++) {
             String image_view_id = "img" + i;
             int r_id = getResources().getIdentifier(image_view_id, "id", getPackageName());
-            System.out.println("Img" + i + " : " + r_id);
             views_arr[i] = (ImageView)findViewById(r_id);
+            available_views.add(i);
         }
+        /* seed random */
+        rand.setSeed(System.currentTimeMillis());
         /* set images on board and start clock*/
         nextRound();
     }
 
     public void onFoundClick(View view) {
-        if(isUpsidedownOrangeT()) {
-            response_time -= System.currentTimeMillis();
-            score += distractions * response_time;
+        if(hasOrangeT()) {
+            response_time = System.currentTimeMillis() - response_time;
+            score += distractions * (response_time/1000);
+            System.out.println("Score: " + score);
         } else {
             //no points added
         }
 
     }
 
-    private boolean isUpsidedownOrangeT() {
+    private boolean hasOrangeT() {
         return orange_t;
+    }
+
+    private boolean willSpawn(boolean distration) {
+        if(distration)
+            return rand.nextInt(100) < SPAWN_CHANGE_DISTRACTION;
+        return rand.nextInt(100) < SPAWN_CHANCE;
     }
 
     private void nextRound() {
         if(cur_round < MAX_ROUNDS) {
-            /* randomly generate which views should get filled */
-            Random rand = new Random();
-            rand.setSeed(response_time);
-            for(int i = 0; i < MAX_T; i++) {
-                switch (rand.nextInt(3)) {
-                    case 0:
-                        views_arr[i].setImageResource(R.drawable.blue_t);
-                        distractions++;
-                        break;
-                    case 1:
-                        views_arr[i].setImageResource(R.drawable.orange_t);
-                        orange_t = true;
-                        break;
-                    case 2:
-                        views_arr[i].setImageResource(R.drawable.rev_orange_t);
-                        distractions++;
-                        break;
+            /* fill in blue Ts */
+            for(int i = 0; i < MAX_BLUE_T; i++) {
+                int view_id = rand.nextInt(available_views.size());
+                if(willSpawn(true)) {
+                    System.out.println("Blue at img" + view_id);
+                    views_arr[view_id].setImageResource(R.drawable.blue_t);
+                    distractions++;
+                    available_views.remove(view_id);
+                }
+            }
+
+            /* fill in rev orange Ts */
+            for(int i = 0; i < MAX_REV_ORANGE_T; i++) {
+                int view_id = rand.nextInt(available_views.size());
+                if(willSpawn(true)) {
+                    System.out.println("Rev Orange at img" + view_id);
+                    views_arr[view_id].setImageResource(R.drawable.rev_orange_t);
+                    distractions++;
+                    available_views.remove(view_id);
+                }
+            }
+
+            /* fill in orange Ts */
+            for(int i = 0; i < MAX_ORANGE_T; i++) {
+                int view_id = rand.nextInt(available_views.size());
+                if(willSpawn(false)) {
+                    System.out.println("Orange at img" + view_id);
+                    views_arr[view_id].setImageResource(R.drawable.orange_t);
+                    orange_t = true;
+                    available_views.remove(view_id);
                 }
             }
         } else {
