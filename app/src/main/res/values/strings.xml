@@ -4,4 +4,5 @@
     <string name="search_instr_desc">Count the number of upright orange arrows.</string>
     <string name="search_instr_train">Train</string>
     <string name="search_instr_play">Play</string>
+    <string name="search_found">Found It</string>
 </resources>
