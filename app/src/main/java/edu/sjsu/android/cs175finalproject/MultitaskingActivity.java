@@ -161,9 +161,8 @@ public class MultitaskingActivity extends AppCompatActivity {
         toast = Toast.makeText(getApplicationContext(), " \n  \n  \n1", Toast.LENGTH_SHORT);
         setToast(toast);
         toast.show();
-
-
     }
+
     public void wrongKey(ImageView imageView){
         setWrong(R.drawable.wrongkey);
         if(imageView == (ImageView)findViewById(R.id.topView)){

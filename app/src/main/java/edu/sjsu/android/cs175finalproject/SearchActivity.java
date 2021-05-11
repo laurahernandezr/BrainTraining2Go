@@ -1,9 +1,13 @@
 package edu.sjsu.android.cs175finalproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,7 +31,7 @@ public class SearchActivity extends AppCompatActivity {
     private ImageView[] views_arr = new ImageView[MAX_T];
     private HashSet<Integer> available_views = new HashSet<>();
 
-    private int distractions;
+    private int distractions = 0;
     private boolean orange_t = false;
     private long response_time;
 
@@ -52,19 +56,24 @@ public class SearchActivity extends AppCompatActivity {
         if(hasOrangeT()) {
             response_time = System.currentTimeMillis() - response_time;
             score += distractions * (response_time/1000);
-            System.out.println("Score: " + score);
+            Toast toast = Toast.makeText(getApplicationContext(), "\n\n\nScore: " + score, Toast.LENGTH_SHORT);
+            setToast(toast);
+            toast.show();
         } else {
-            //no points added
+            Toast toast = Toast.makeText(getApplicationContext(), "\n\n\nWrong!\nThere was no\norange T", Toast.LENGTH_SHORT);
+            setToast(toast);
+            toast.show();
         }
-
+        cur_round++;
+        nextRound();
     }
 
     private boolean hasOrangeT() {
         return orange_t;
     }
 
-    private boolean willSpawn(boolean distration) {
-        if(distration)
+    private boolean willSpawn(boolean distraction) {
+        if(distraction)
             return rand.nextInt(100) < SPAWN_CHANGE_DISTRACTION;
         return rand.nextInt(100) < SPAWN_CHANCE;
     }
@@ -103,12 +112,39 @@ public class SearchActivity extends AppCompatActivity {
                     available_views.remove(view_id);
                 }
             }
+            showConcentrationToast();
         } else {
-            // Goto results screen
+            System.out.println("Game over. Score " + score);
         }
-        System.out.println("Distractions: " + distractions);
-        System.out.println("Orange T: " + orange_t);
+    }
+
+    public void showConcentrationToast(){
+        Toast toast = Toast.makeText(getApplicationContext(), " \n  \n  \nCONCENTRATE", Toast.LENGTH_SHORT);
+        setToast(toast);
+        toast.show();
+
+        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n3", Toast.LENGTH_SHORT);
+        setToast(toast);
+        toast.show();
+
+        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n2", Toast.LENGTH_SHORT);
+        setToast(toast);
+        toast.show();
+
+        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n1", Toast.LENGTH_SHORT);
+        setToast(toast);
+        toast.show();
+
         /* start clock */
         response_time = System.currentTimeMillis();
+    }
+
+    private void setToast(Toast toast){
+        View view = toast.getView();
+        view.setBackgroundResource(R.drawable.screen_shot_2021_05_10_at_1_08_32_pm);
+        TextView text = (TextView) view.findViewById(android.R.id.message);
+        text.setTextColor(Color.parseColor("#FFFFFFFF"));
+        toast.setGravity(Gravity.FILL, 0, 0);
+        text.setTextSize(40);
     }
 }
