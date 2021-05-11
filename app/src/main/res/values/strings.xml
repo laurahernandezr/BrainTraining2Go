@@ -2,6 +2,6 @@
     <string name="app_name">CS175FinalProject</string>
     <string name="search_instr_title">Search Instructions</string>
     <string name="search_instr_desc">Count the number of upright orange arrows.</string>
-    <string name="search_instr_btn">Instructions</string>
     <string name="search_instr_train">Train</string>
+    <string name="search_instr_play">Play</string>
 </resources>

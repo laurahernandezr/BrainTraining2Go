@@ -30,28 +30,28 @@
         android:text="@string/search_instr_desc"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/search_instr_btn"
+        app:layout_constraintBottom_toTopOf="@+id/search_instr_train"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/search_instr_btn"
+        android:id="@+id/search_instr_train"
         android:layout_width="262dp"
         android:layout_height="59dp"
         android:layout_marginBottom="48dp"
-        android:text="@string/search_instr_btn"
+        android:text="@string/search_instr_train"
         android:onClick="onInstructions"
-        app:layout_constraintBottom_toTopOf="@+id/search_instr_train"
+        app:layout_constraintBottom_toTopOf="@+id/search_instr_play"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/search_instr_train"
+        android:id="@+id/search_instr_play"
         android:layout_width="263dp"
         android:layout_height="59dp"
         android:layout_marginBottom="184dp"
-        android:text="@string/search_instr_train"
+        android:text="@string/search_instr_play"
         android:onClick="onTrain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
