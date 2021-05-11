@@ -33,8 +33,8 @@ public class MultitaskingActivity extends AppCompatActivity {
     private int singleTaskScore = 0;
     private int switchingTaskScore = 0;
     private int totalScore = 0;
-    final private int MAX_ROUNDS_PRACTICE = 1;
-    final private int MAX_ROUNDS_DATACOLLECTION = 1;
+    final private int MAX_ROUNDS_PRACTICE = 10;
+    final private int MAX_ROUNDS_DATACOLLECTION = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
