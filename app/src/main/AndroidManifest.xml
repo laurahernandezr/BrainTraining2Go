@@ -23,6 +23,7 @@
         <activity android:name=".MultitaskingInstructionsActivity">
 
         </activity>
+        <activity android:name=".SearchActivity"/>
     </application>
 
 </manifest>

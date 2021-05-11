@@ -29,12 +29,12 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
         setContentView(R.layout.search_view);
         /* get all image views */
         for(int i = 0; i < MAX_T; i++) {
             String image_view_id = "img" + i;
             int r_id = getResources().getIdentifier(image_view_id, "id", getPackageName());
+            System.out.println(r_id);
             views_arr[i] = (ImageView)findViewById(r_id);
         }
         /* set images on board and start clock*/
@@ -79,6 +79,8 @@ public class SearchActivity extends AppCompatActivity {
         } else {
             // Goto results screen
         }
+        System.out.println("Distractions: " + distractions);
+        System.out.println("Orange T: " + orange_t);
         /* start clock */
         response_time = System.currentTimeMillis();
     }
