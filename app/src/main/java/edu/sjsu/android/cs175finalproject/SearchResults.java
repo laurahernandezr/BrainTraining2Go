@@ -10,13 +10,13 @@ public class SearchResults extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.multitasking_results);
-        String score = getIntent().getStringExtra("score");
-        String avg = getIntent().getStringExtra("average");
+        setContentView(R.layout.search_results);
+        int score = getIntent().getIntExtra("score", 0);
+        long avg = getIntent().getLongExtra("average", 0);
         TextView scoreView = (TextView) findViewById(R.id.results_score);
         TextView avgView = (TextView) findViewById(R.id.results_avg);
-        scoreView.setText(score);
-        avgView.setText(avg);
+        scoreView.setText(Integer.toString(score));
+        avgView.setText(Double.toString(avg) + "ms");
 
     }
     public void onClickHome(){

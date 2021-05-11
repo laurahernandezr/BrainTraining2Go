@@ -17,7 +17,7 @@ import java.util.Random;
 public class SearchActivity extends AppCompatActivity {
     private int score = 0;
     private int cur_round = 0;
-    private final int MAX_ROUNDS = 5;
+    private final int MAX_ROUNDS = 1;
 
     private final int MAX_T = 25;
     private final int MAX_ORANGE_T = 1;
@@ -34,6 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     private int distractions = 0;
     private boolean orange_t = false;
     private long response_time;
+    private long average_res_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +56,30 @@ public class SearchActivity extends AppCompatActivity {
     public void onFoundClick(View view) {
         if(hasOrangeT()) {
             response_time = System.currentTimeMillis() - response_time;
+            average_res_time += response_time;
             score += distractions * (response_time/1000);
             Toast toast = Toast.makeText(getApplicationContext(), "\n\n\nScore: " + score, Toast.LENGTH_SHORT);
             setToast(toast);
             toast.show();
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "\n\n\nWrong!\nThere was no\norange T", Toast.LENGTH_SHORT);
+            setToast(toast);
+            toast.show();
+        }
+        cur_round++;
+        nextRound();
+    }
+
+    public void onNotFoundClick(View view) {
+        if(hasOrangeT()) {
+            Toast toast = Toast.makeText(getApplicationContext(), "\n\n\nWrong!\nThere was an\norange T", Toast.LENGTH_SHORT);
+            setToast(toast);
+            toast.show();
+        } else {
+            response_time = System.currentTimeMillis() - response_time;
+            average_res_time += response_time;
+            score += distractions * (response_time/1000);
+            Toast toast = Toast.makeText(getApplicationContext(), "\n\n\nScore: " + score, Toast.LENGTH_SHORT);
             setToast(toast);
             toast.show();
         }
@@ -114,7 +133,11 @@ public class SearchActivity extends AppCompatActivity {
             }
             showConcentrationToast();
         } else {
-            System.out.println("Game over. Score " + score);
+            Intent intent = new Intent(this, SearchResults.class);
+            intent.putExtra("score", score);
+            System.out.println(average_res_time);
+            intent.putExtra("average", average_res_time/MAX_ROUNDS);
+            startActivity(intent);
         }
     }
 
