@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
         for(int i = 0; i < MAX_T; i++) {
             String image_view_id = "img" + i;
             int r_id = getResources().getIdentifier(image_view_id, "id", getPackageName());
-            System.out.println(r_id);
+            System.out.println("Img" + i + " : " + r_id);
             views_arr[i] = (ImageView)findViewById(r_id);
         }
         /* set images on board and start clock*/
