@@ -10,8 +10,21 @@
         android:id="@+id/multitaskingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Multitasking Training"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="80dp"
         android:onClick="onClickMultitasking"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="478dp" />
+        android:text="Multitasking Training"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/search_play"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/multitaskingButton"
+        android:onClick="onClickSearch" />
 </androidx.constraintlayout.widget.ConstraintLayout>

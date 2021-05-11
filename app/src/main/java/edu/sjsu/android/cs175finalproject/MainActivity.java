@@ -22,4 +22,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickSearch(View view) {
+        Intent intent = new Intent(this, SearchInstructionsActivity.class);
+        startActivity(intent);
+    }
+
 }
