@@ -10,15 +10,13 @@
         android:id="@+id/search_instr_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginTop="80dp"
         android:text="@string/search_instr_title"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/search_instr_desc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.634"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,25 +24,13 @@
         android:id="@+id/search_instr_desc"
         android:layout_width="343dp"
         android:layout_height="83dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="64dp"
         android:text="@string/search_instr_desc"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/search_instr_train"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/search_instr_train"
-        android:layout_width="262dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="48dp"
-        android:text="@string/search_instr_train"
-        android:onClick="onInstructions"
-        app:layout_constraintBottom_toTopOf="@+id/search_instr_play"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_instr_title" />
 
     <Button
         android:id="@+id/search_instr_play"
@@ -52,7 +38,7 @@
         android:layout_height="59dp"
         android:layout_marginBottom="184dp"
         android:text="@string/search_instr_play"
-        android:onClick="onTrain"
+        android:onClick="onPlay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"

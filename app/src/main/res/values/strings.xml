@@ -3,7 +3,12 @@
 
     <string name="search_play">Search Game Play</string>
     <string name="search_instr_title">Search Instructions</string>
-    <string name="search_instr_desc">Count the number of upright orange arrows.</string>
+    <string name="search_instr_desc">
+        The goal of the game is to find the orange T as fast as possible.
+        There will be blue Ts and upside down orange Ts to distract you.
+        If there is an orange T, click "Found it"
+        If there is no orange T, click "No Orange T"
+    </string>
     <string name="search_instr_train">Train</string>
     <string name="search_instr_play">Play</string>
     <string name="search_found">Found It</string>
