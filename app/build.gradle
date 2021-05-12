@@ -7,8 +7,8 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "edu.sjsu.android.cs175finalproject"
-        minSdkVersion 21
+        applicationId "com.example.cardmatchgame"
+        minSdkVersion 29
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
