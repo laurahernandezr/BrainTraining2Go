@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity {
+public class cardMatch extends AppCompatActivity {
 
     TextView textView2;
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.cardmatch);
 
         textView2 = (TextView) findViewById(R.id.textView2);
 
@@ -337,14 +337,14 @@ public class MainActivity extends AppCompatActivity {
                 iv_20.getVisibility() == View.INVISIBLE &&
                 iv_21.getVisibility() == View.INVISIBLE &&
                 iv_22.getVisibility() == View.INVISIBLE) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cardMatch.this);
             alertDialogBuilder
                     .setMessage("GAME OVER!\nScore: " + playerPoints)
                     .setCancelable(false)
                     .setPositiveButton("NEW", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), cardMatch.class);
                             startActivity(intent);
                             finish();
                         }

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".cardMatch">
 
     <include
         android:id="@+id/include"
-        layout="@layout/images"
+        layout="@layout/cardmatchimage"
         android:layout_width="396dp"
         android:layout_height="451dp"
         app:layout_constraintBottom_toBottomOf="parent"
