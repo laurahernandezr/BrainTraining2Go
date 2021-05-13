@@ -23,7 +23,7 @@ public class MultitaskingResults extends AppCompatActivity {
 
     }
     public void onClickHome(){
-        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        Intent intent = new Intent(getBaseContext(), ChooseGameActivity.class);
         startActivity(intent);
     }
 }
