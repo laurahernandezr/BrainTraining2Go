@@ -164,7 +164,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setToast(Toast toast){
         View view = toast.getView();
-        view.setBackgroundResource(R.drawable.screen_shot_2021_05_10_at_1_08_32_pm);
+        view.setBackgroundResource(R.drawable.black_background);
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setTextColor(Color.parseColor("#FFFFFFFF"));
         toast.setGravity(Gravity.FILL, 0, 0);

@@ -1,7 +1,31 @@
 <resources>
-    <string name="app_name">CS175FinalProject</string>
+    <string name="app_name">BrainTraining 2Go</string>
+    <string name="app_description">Challenge your brain with daily training games anywhere you are</string>
+    <string name="start_training">Start Training</string>
 
-    <string name="search_play">Search Game Play</string>
+    <string name="multitasking_title">Multitasking Training</string>
+    <string name="multitasking_description">In this multitasking experiment, we compare performance when just doing one task compared to when two tasks are mixed. </string>
+    <string name="multitasking_use">
+        Useful for:
+        \n1. Carrying out multiple tasks at the same time like driving while talking on the phone
+        \n2. Carrying out multiple tasks in rapid sequential order like cooking </string>
+    <string name="multitasking_instructions">You will be shown these four figures in sequential trials
+        \n1. When on the top "Shape" space, you will classify them by the shape ONLY.
+        \n2. When on the bottom "Filling" space, you will classify them by the the number of dots ONLY.
+        \n3. On the mix challenge you will have to switch classification depending if the figure is at the top or bottom
+    </string>
+    <string name="continue_to_instrucitons">Continue to Instructions</string>
+    <string name="see_past_scores">See your progress on this task</string>
+
+    <string name="choose">Choose your training task:</string>
+
+    <string name="search_title">Visual Search Training</string>
+    <string name="search_description"> Visual search is a type of perceptual task requiring attention that involves an active scan of the visual environment for a particular object among others</string>
+    <string name="search_use">
+         Useful for:
+        \n1. Looking for your keys on the table before you leave
+        \n2.Finding a friend in a large crowd of people
+    </string>
     <string name="search_instr_title">Search Instructions</string>
     <string name="search_instr_desc">
         The goal of the game is to find the orange T as fast as possible.
@@ -13,7 +37,21 @@
     <string name="search_instr_play">Play</string>
     <string name="search_found">Found It</string>
     <string name="search_not_found">No Orange T</string>
+    <string name="play">Start Playing</string>
 
     <string name="results_avg_time">Average Response Time:</string>
     <string name="results_score">Total Score:</string>
+
+    <string name="memory_title">Memory Training</string>
+    <string name="memory_description">Concentration is a type of visuo-spatial memory task that involves recalling and manipulating images to keep track of the location of moving objects</string>
+    <string name="memory_use">
+         Useful for:
+        \n1.Recalling where you saw things last in your apartment
+        \n2.Better letter/number recognition when reading or performing arithmetic tasks
+    </string>
+    <string name="memory_instructions">
+        1.Click on the cards to reveal the icon
+        \n2.Remember the position and icon of the card you saw
+        \n3.Try to pair two cards with the same icon together to earn points
+    </string>
 </resources>

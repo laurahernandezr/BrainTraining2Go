@@ -35,28 +35,28 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <Button
-        android:id="@+id/rightButton"
+        android:id="@+id/leftButton"
         android:layout_width="138dp"
         android:layout_height="179dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="86dp"
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="40dp"
-        android:text="Left"
+        android:text="b"
         android:onClick="onLeftClick"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/leftButton"
+        app:layout_constraintEnd_toStartOf="@+id/rightButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomView" />
 
     <Button
-        android:id="@+id/leftButton"
+        android:id="@+id/rightButton"
         android:layout_width="138dp"
         android:layout_height="179dp"
         android:layout_marginTop="86dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="40dp"
-        android:text="right"
+        android:text="n"
         android:onClick="onRightClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

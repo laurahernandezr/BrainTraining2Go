@@ -17,14 +17,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-    public void onClickMultitasking(View view){
-        Intent intent = new Intent(this, MultitaskingInstructionsActivity.class);
+    public void onClickTrain(View view) {
+        Intent intent = new Intent(this, ChooseGameActivity.class);
         startActivity(intent);
     }
 
-    public void onClickSearch(View view) {
-        Intent intent = new Intent(this, SearchInstructionsActivity.class);
-        startActivity(intent);
-    }
 
 }

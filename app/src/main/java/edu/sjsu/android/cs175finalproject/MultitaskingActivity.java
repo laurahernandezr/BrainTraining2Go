@@ -1,19 +1,13 @@
 package edu.sjsu.android.cs175finalproject;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
@@ -33,15 +27,13 @@ public class MultitaskingActivity extends AppCompatActivity {
     private int singleTaskScore = 0;
     private int switchingTaskScore = 0;
     private int totalScore = 0;
-    final private int MAX_ROUNDS_PRACTICE = 10;
-    final private int MAX_ROUNDS_DATACOLLECTION = 20;
+    final private int MAX_ROUNDS_PRACTICE = 5;
+    final private int MAX_ROUNDS_DATACOLLECTION = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
         setContentView(R.layout.multitasking_view);
-        maxRounds = 10;
         taskNumber = 1;
         viewsArray[0] = (ImageView)findViewById(R.id.topView);
         viewsArray[1] = (ImageView)findViewById(R.id.bottomView);
@@ -101,12 +93,12 @@ public class MultitaskingActivity extends AppCompatActivity {
 
         }else {
             if (taskNumber == 4 || taskNumber == 5){
-                singleTaskScore = score;
-                totalScore = totalScore + score;
+                singleTaskScore += score;
+                totalScore += score;
                 score = 0;
             }else{
-                switchingTaskScore = score;
-                totalScore = totalScore + score;
+                switchingTaskScore += score;
+                totalScore += score;
             }
             maxRounds = MAX_ROUNDS_DATACOLLECTION;
             if(rounds <= maxRounds)
@@ -120,7 +112,7 @@ public class MultitaskingActivity extends AppCompatActivity {
                 }
                 imageNumber = new Random().nextInt(4);
 
-                while (imageNumber == pastImage && viewNumber == pastView && taskNumber < 6){
+                while (imageNumber == pastImage && viewNumber == pastView && taskNumber == 6){
                     imageNumber = new Random().nextInt(4);
                     viewNumber = new Random().nextInt(2);
                 }
@@ -180,12 +172,12 @@ public class MultitaskingActivity extends AppCompatActivity {
         Toast toast;
         if (taskNumber == 1 && rounds == 0 || taskNumber == 4  && rounds == 0){
             if(taskNumber > 3){
-                toast = Toast.makeText(getApplicationContext()," \n  \n  \nDATA COLLECTION PORTION",Toast.LENGTH_SHORT);
+                toast = Toast.makeText(getApplicationContext()," \n  \n  \nDATA\nCOLLECTION\nPORTION",Toast.LENGTH_SHORT);
                 setToast(toast);
                 toast.show();
 
             }else {
-                toast = Toast.makeText(getApplicationContext()," \n  \n  \nPRACTICE PORTION",Toast.LENGTH_SHORT);
+                toast = Toast.makeText(getApplicationContext()," \n  \n  \nPRACTICE\nPORTION",Toast.LENGTH_SHORT);
                 setToast(toast);
                 toast.show();
 
@@ -198,11 +190,11 @@ public class MultitaskingActivity extends AppCompatActivity {
             toast.show();
         }
         if (taskNumber == 2 && rounds == 0 || taskNumber == 5  && rounds == 0){
-            toast = Toast.makeText(getApplicationContext()," \n  \n  \nBlock of just the \nFILLING TASK",Toast.LENGTH_SHORT);
+            toast = Toast.makeText(getApplicationContext()," \n  \n  \nBlock of just the\nFILLING TASK",Toast.LENGTH_SHORT);
             setToast(toast);
             toast.show();
         }else if (taskNumber == 3 && rounds == 0 || taskNumber == 6  && rounds == 0){
-            toast = Toast.makeText(getApplicationContext()," \n  \n  \nBlock of a mix of \nSHAPE \n and \nFILLING TASK",Toast.LENGTH_SHORT);
+            toast = Toast.makeText(getApplicationContext()," \n  \n  \nMix of\nSHAPE\nand\nFILLING TASK",Toast.LENGTH_SHORT);
             setToast(toast);
             toast.show();
         }
@@ -229,7 +221,7 @@ public class MultitaskingActivity extends AppCompatActivity {
     }
     private void setToast(Toast toast){
         View view = toast.getView();
-        view.setBackgroundResource(R.drawable.screen_shot_2021_05_10_at_1_08_32_pm);
+        view.setBackgroundResource(R.drawable.black_background);
         TextView text = (TextView) view.findViewById(android.R.id.message);
         text.setTextColor(Color.parseColor("#FFFFFFFF"));
         toast.setGravity(Gravity.FILL, 0, 0);

@@ -20,8 +20,8 @@ public class SearchResults extends AppCompatActivity {
         avgView.setText(Double.toString(avg) + "ms");
 
     }
-    public void onClickHome(View view){
-        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+    public void onClickHome(){
+        Intent intent = new Intent(getBaseContext(), ChooseGameActivity.class);
         startActivity(intent);
     }
 }

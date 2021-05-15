@@ -16,16 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ChooseGameActivity"/>
+        <activity android:name=".GameDescriptionActivity"/>
+        <activity android:name=".GameInstructionsActivity"/>
         <activity android:name=".MultitaskingActivity">
         </activity>
         <activity android:name=".MultitaskingResults">
         </activity>
-        <activity android:name=".MultitaskingInstructionsActivity">
-
-        </activity>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".SearchResults"/>
-        <activity android:name=".SearchInstructionsActivity"/>
+
+        <activity android:name=".cardMatch"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
