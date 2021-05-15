@@ -24,12 +24,8 @@
         </activity>
         <activity android:name=".MultitaskingResults">
         </activity>
-        <activity android:name=".MultitaskingInstructionsActivity">
-
-        </activity>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".SearchResults"/>
-        <activity android:name=".SearchInstructionsActivity"/>
 
         <activity android:name=".cardMatch"/>
 

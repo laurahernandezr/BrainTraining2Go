@@ -39,7 +39,6 @@ public class GameInstructionsActivity extends AppCompatActivity {
         }else {
             gameTitle.setText(R.string.memory_title);
             gameInstructions.setText(R.string.memory_instructions);
-            //gameImage.setText(R.string.memory_use);
             gameClass = cardMatch.class;
 
         }

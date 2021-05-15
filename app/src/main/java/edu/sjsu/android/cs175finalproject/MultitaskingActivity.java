@@ -33,7 +33,6 @@ public class MultitaskingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
         setContentView(R.layout.multitasking_view);
         taskNumber = 1;
         viewsArray[0] = (ImageView)findViewById(R.id.topView);

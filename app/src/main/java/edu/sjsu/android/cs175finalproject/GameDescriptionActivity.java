@@ -24,6 +24,7 @@ public class GameDescriptionActivity extends AppCompatActivity {
         //Hiding Button until implemented
         Button b = (Button)findViewById(R.id.button2);
         b.setEnabled(false);
+
         gameType = getIntent().getIntExtra("GAME",-1);
         if (gameType == 0) {
             gameTitle.setText(R.string.multitasking_title);
