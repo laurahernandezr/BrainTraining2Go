@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void onClickTrain(View view) {
-        Intent intent = new Intent(this, ChooseGameActivity.class);
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
 

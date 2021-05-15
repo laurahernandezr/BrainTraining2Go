@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".SearchActivity"/>
         <activity android:name=".SearchResults"/>
+        <activity android:name=".SignInActivity"/>
+        <activity android:name=".SignUpActivity"/>
 
         <activity android:name=".cardMatch"/>
 
