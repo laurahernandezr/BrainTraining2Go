@@ -4,7 +4,9 @@ public class ProgressModel {
     String game;
     long round;
     long score;
-
+    /*
+    This class needs to match the Firebase Firestore objects exactly.
+     */
     public ProgressModel(){}
 
     public ProgressModel(String game, long round, long score) {
