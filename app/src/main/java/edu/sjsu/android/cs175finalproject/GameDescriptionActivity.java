@@ -23,7 +23,7 @@ public class GameDescriptionActivity extends AppCompatActivity {
         gameUse = (TextView)findViewById(R.id.game_use);
         //Hiding Button until implemented
         Button b = (Button)findViewById(R.id.button2);
-        b.setEnabled(false);
+        //b.setEnabled(false);
 
         gameType = getIntent().getIntExtra("GAME",-1);
         if (gameType == 0) {
@@ -47,6 +47,12 @@ public class GameDescriptionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameInstructionsActivity.class);
         intent.putExtra("GAME", gameType);
         startActivity(intent);
+    }
+    public void onClickProgress(View view){
+        Intent intent = new Intent(this, ProgressActivity.class);
+        intent.putExtra("GAME", gameType);
+        startActivity(intent);
 
     }
+
 }

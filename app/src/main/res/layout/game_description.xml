@@ -87,7 +87,7 @@
         android:layout_marginBottom="108dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/roboto"
-        android:onClick="onClickMemory"
+        android:onClick="onClickProgress"
         android:text="@string/see_past_scores"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#316492"

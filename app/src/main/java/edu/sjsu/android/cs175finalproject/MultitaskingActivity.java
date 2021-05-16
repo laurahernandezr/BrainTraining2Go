@@ -255,9 +255,9 @@ public class MultitaskingActivity extends AppCompatActivity {
             if(switchingTaskScore>0){
                 switchingTaskScore = switchingTaskScore/maxRounds;
             }
-            intent.putExtra("totalAverage", String.valueOf(totalScore));
-            intent.putExtra("repeatingAverage", String.valueOf(singleTaskScore));
-            intent.putExtra("switchingAverage", String.valueOf(switchingTaskScore));
+            intent.putExtra("totalAverage", totalScore);
+            intent.putExtra("repeatingAverage", singleTaskScore);
+            intent.putExtra("switchingAverage", switchingTaskScore);
             intent.putExtra("round", r);
             startActivity(intent);
         }

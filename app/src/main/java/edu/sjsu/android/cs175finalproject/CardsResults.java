@@ -26,20 +26,19 @@ public class CardsResults extends AppCompatActivity {
 
         TextView scoreView = (TextView) findViewById(R.id.results_score);
         TextView avgView = (TextView) findViewById(R.id.results_avg);
-        scoreView.setText(Integer.toString(score));
-        avgView.setText(Double.toString(avg) + "s");
-
-
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         // Add round data
         Map<String, Object> scoreMap = new HashMap<>();
-        scoreMap.put("score", score);
-        scoreMap.put("average", avg);
+        scoreMap.put("score", avg);
         scoreMap.put("round", r);
+        scoreMap.put("game", "MemoryScores");
         db.collection("MemoryScores").document(currentUser.getUid()).collection("Rounds").add(scoreMap);
+        scoreView.setText(Integer.toString(score));
+        avgView.setText(Double.toString(avg) + "s");
+
 
     }
     public void onClickHome(View view){

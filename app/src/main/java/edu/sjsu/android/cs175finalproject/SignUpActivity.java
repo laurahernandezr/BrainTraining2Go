@@ -24,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
     // [START declare_auth]
     private FirebaseAuth mAuth;
-    private String email ,password = "";
+    private String email ,password;
     private EditText emailView, passwordView, passwordView2;
 
 

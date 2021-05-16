@@ -33,11 +33,12 @@ public class SearchResults extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         // Add round data
         Map<String, Object> scoreMap = new HashMap<>();
-        scoreMap.put("score", score);
-        scoreMap.put("average", avg);
+        scoreMap.put("score",score);
         scoreMap.put("round", r);
+        scoreMap.put("game", "SearchScores");
         db.collection("SearchScores").document(currentUser.getUid()).collection("Rounds").add(scoreMap);
 
     }
