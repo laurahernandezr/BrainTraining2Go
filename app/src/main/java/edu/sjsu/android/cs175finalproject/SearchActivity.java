@@ -3,15 +3,26 @@ package edu.sjsu.android.cs175finalproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 
 public class SearchActivity extends AppCompatActivity {
@@ -36,6 +47,9 @@ public class SearchActivity extends AppCompatActivity {
     private long response_time;
     private long average_res_time;
 
+    private FirebaseAuth mAuth;
+    int r;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +61,31 @@ public class SearchActivity extends AppCompatActivity {
             views_arr[i] = (ImageView)findViewById(r_id);
             available_views.add(i);
         }
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Check which round that was and update the round count in firebase
+        db.collection("SearchScores").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Object data = document.getData().get("rounds");
+                        r = Integer.parseInt(String.valueOf(data));
+                        db.collection("SearchScores").document(currentUser.getUid()).update("rounds",++r);
+
+                    } else {
+                        Map<String, Object> firstRounds = new HashMap<>();
+                        firstRounds.put("rounds",0);
+                        db.collection("SearchScores").document(currentUser.getUid()).set(firstRounds);
+                    }
+                } else {
+                    Log.d("Firestore", "get failed with ", task.getException());
+
+                }
+            }
+        });
         /* seed random */
         rand.setSeed(System.currentTimeMillis());
         /* set images on board and start clock*/
@@ -137,6 +176,7 @@ public class SearchActivity extends AppCompatActivity {
             intent.putExtra("score", score);
             System.out.println(average_res_time);
             intent.putExtra("average", average_res_time/MAX_ROUNDS);
+            intent.putExtra("round", r);
             startActivity(intent);
         }
     }

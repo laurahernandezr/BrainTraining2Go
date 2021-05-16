@@ -15,7 +15,6 @@ public class ChooseGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_game);
-
     }
 
     public void onClickMultitasking(View view){

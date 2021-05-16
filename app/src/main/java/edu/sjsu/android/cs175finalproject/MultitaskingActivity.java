@@ -2,13 +2,25 @@ package edu.sjsu.android.cs175finalproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -27,8 +39,10 @@ public class MultitaskingActivity extends AppCompatActivity {
     private int singleTaskScore = 0;
     private int switchingTaskScore = 0;
     private int totalScore = 0;
-    final private int MAX_ROUNDS_PRACTICE = 5;
-    final private int MAX_ROUNDS_DATACOLLECTION = 10;
+    final private int MAX_ROUNDS_PRACTICE = 3;
+    final private int MAX_ROUNDS_DATACOLLECTION = 3;
+    private FirebaseAuth mAuth;
+    private int r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +52,35 @@ public class MultitaskingActivity extends AppCompatActivity {
         viewsArray[0] = (ImageView)findViewById(R.id.topView);
         viewsArray[1] = (ImageView)findViewById(R.id.bottomView);
         fullView =  (ImageView)findViewById(R.id.FullImageView);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Check which round that was and update the round count in firebase
+        db.collection("MultitaskingScores").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Object data = document.getData().get("rounds");
+                        r = Integer.parseInt(String.valueOf(data));
+                        db.collection("MultitaskingScores").document(currentUser.getUid()).update("rounds",++r);
+
+                    } else {
+                        Map<String, Object> firstRounds = new HashMap<>();
+                        firstRounds.put("rounds",0);
+                        db.collection("MultitaskingScores").document(currentUser.getUid()).set(firstRounds);
+                    }
+                } else {
+                    Log.d("Firestore", "get failed with ", task.getException());
+
+                }
+            }
+        });
+
         showInstruction();
+
     }
     public void onRightClick(View view){
         if(imageNumber == 3 || imageNumber == 1 && viewNumber == 1 ||imageNumber == 2 && viewNumber == 0 ) {
@@ -138,21 +180,21 @@ public class MultitaskingActivity extends AppCompatActivity {
     }
 
     public void showConcentrationToast(){
-        Toast toast = Toast.makeText(getApplicationContext(), " \n  \n  \nCONCENTRATE", Toast.LENGTH_SHORT);
-        setToast(toast);
-        toast.show();
-
-        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n3", Toast.LENGTH_SHORT);
-        setToast(toast);
-        toast.show();
-
-        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n2", Toast.LENGTH_SHORT);
-        setToast(toast);
-        toast.show();
-
-        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n1", Toast.LENGTH_SHORT);
-        setToast(toast);
-        toast.show();
+//        Toast toast = Toast.makeText(getApplicationContext(), " \n  \n  \nCONCENTRATE", Toast.LENGTH_SHORT);
+//        setToast(toast);
+//        toast.show();
+//
+//        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n3", Toast.LENGTH_SHORT);
+//        setToast(toast);
+//        toast.show();
+//
+//        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n2", Toast.LENGTH_SHORT);
+//        setToast(toast);
+//        toast.show();
+//
+//        toast = Toast.makeText(getApplicationContext(), " \n  \n  \n1", Toast.LENGTH_SHORT);
+//        setToast(toast);
+//        toast.show();
     }
 
     public void wrongKey(ImageView imageView){
@@ -174,12 +216,12 @@ public class MultitaskingActivity extends AppCompatActivity {
             if(taskNumber > 3){
                 toast = Toast.makeText(getApplicationContext()," \n  \n  \nDATA\nCOLLECTION\nPORTION",Toast.LENGTH_SHORT);
                 setToast(toast);
-                toast.show();
+                //toast.show();
 
             }else {
                 toast = Toast.makeText(getApplicationContext()," \n  \n  \nPRACTICE\nPORTION",Toast.LENGTH_SHORT);
                 setToast(toast);
-                toast.show();
+                //toast.show();
 
             }
 
@@ -187,16 +229,16 @@ public class MultitaskingActivity extends AppCompatActivity {
         if (taskNumber == 1 && rounds == 0 || taskNumber == 4  && rounds == 0) {
             toast = Toast.makeText(this, " \n  \n  \nBlock of just the\nSHAPE TASK", Toast.LENGTH_SHORT);
             setToast(toast);
-            toast.show();
+            //toast.show();
         }
         if (taskNumber == 2 && rounds == 0 || taskNumber == 5  && rounds == 0){
             toast = Toast.makeText(getApplicationContext()," \n  \n  \nBlock of just the\nFILLING TASK",Toast.LENGTH_SHORT);
             setToast(toast);
-            toast.show();
+            //toast.show();
         }else if (taskNumber == 3 && rounds == 0 || taskNumber == 6  && rounds == 0){
             toast = Toast.makeText(getApplicationContext()," \n  \n  \nMix of\nSHAPE\nand\nFILLING TASK",Toast.LENGTH_SHORT);
             setToast(toast);
-            toast.show();
+            //toast.show();
         }
         if (taskNumber == 1 && rounds == 0 || taskNumber == 4  && rounds == 0) {
             showConcentrationToast();
@@ -216,6 +258,7 @@ public class MultitaskingActivity extends AppCompatActivity {
             intent.putExtra("totalAverage", String.valueOf(totalScore));
             intent.putExtra("repeatingAverage", String.valueOf(singleTaskScore));
             intent.putExtra("switchingAverage", String.valueOf(switchingTaskScore));
+            intent.putExtra("round", r);
             startActivity(intent);
         }
     }
@@ -238,7 +281,7 @@ public class MultitaskingActivity extends AppCompatActivity {
         View view2 = toast.getView();
         view2.setBackgroundResource(resource);
         toast.setGravity(Gravity.FILL, 0, 0);
-        toast.show();
+        //toast.show();
 
     }
 

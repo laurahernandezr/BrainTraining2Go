@@ -29,7 +29,8 @@
         <activity android:name=".SignInActivity"/>
         <activity android:name=".SignUpActivity"/>
 
-        <activity android:name=".cardMatch"/>
+        <activity android:name=".CardMatchActivity"/>
+        <activity android:name=".CardsResults"/>
 
         <meta-data
             android:name="preloaded_fonts"

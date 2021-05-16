@@ -14,20 +14,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchResults extends AppCompatActivity {
+public class CardsResults extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_results);
+        setContentView(R.layout.cards_results);
         int score = getIntent().getIntExtra("score", 0);
-        long avg = getIntent().getLongExtra("average", 0);
+        double avg = getIntent().getDoubleExtra("time", 50);
+        int r = getIntent().getIntExtra("round",0);
+
         TextView scoreView = (TextView) findViewById(R.id.results_score);
         TextView avgView = (TextView) findViewById(R.id.results_avg);
         scoreView.setText(Integer.toString(score));
-        avgView.setText(Double.toString(avg) + "ms");
-        int r = getIntent().getIntExtra("round",0);
+        avgView.setText(Double.toString(avg) + "s");
+
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -38,7 +39,7 @@ public class SearchResults extends AppCompatActivity {
         scoreMap.put("score", score);
         scoreMap.put("average", avg);
         scoreMap.put("round", r);
-        db.collection("SearchScores").document(currentUser.getUid()).collection("Rounds").add(scoreMap);
+        db.collection("MemoryScores").document(currentUser.getUid()).collection("Rounds").add(scoreMap);
 
     }
     public void onClickHome(View view){

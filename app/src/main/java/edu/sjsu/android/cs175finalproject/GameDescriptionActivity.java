@@ -13,7 +13,7 @@ public class GameDescriptionActivity extends AppCompatActivity {
     TextView gameTitle;
     TextView gameDescription;
     TextView gameUse;
-    Class instructionClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
