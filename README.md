@@ -15,13 +15,22 @@ The instructions for the specific tasks were taken from [psytoolkit](https://www
 
 ## Table of Contents
 
-[TOC]
+- [BrainTraining 2 Go](#braintraining-2-go)
+  - [Team Members](#team-members)
+  - [Beginners Guide](#beginners-guide)
+  - [Why a Mobile Application?](#why-a-mobile-application)
+  - [Game Instructions (User Guide)](#game-instructions-user-guide)
+    - [Multitasking Task](#multitasking-task)
+    - [Visual Search Task](#visual-search-task)
+    - [Visuo-Spacial Memory Task](#visuo-spacial-memory-task)
+  - [Features](#features)
+  - [Backlog](#backlog)
 
 ## Team Members
 
 - ![Laura Hernandez](https://github.com/laurahernandezr.png?size=60) Laura Hernandez 
 - ![Dillon Larson](https://github.com/dill-larson.png?size=60) Dillon Larson 
-- ![Jiawei Su](https://github.com/npm.png?size=60) Jiawei Su 
+- ![Jiawei Su](https://github.com/petersu116.png?size=60) Jiawei Su 
 
 ## Beginners Guide
 
@@ -62,7 +71,7 @@ Multitasking is important to carrying out multiple everyday tasks, such as drivi
 The task implemented is modeled to the one used on the paper 'Are women better than men at multitasking?' 
 [Read the paper here](https://bmcpsychology.biomedcentral.com/articles/10.1186/2050-7283-1-18)
 
-### Task Instructions
+#### Task Instructions
 
 The subject is shown a set of four figures in sequential trials.
 
@@ -91,15 +100,14 @@ This function is useful for looking for an object in a cluttered space quickly l
 
 The task was modeled after the paper 'Color coding in a visual search task.' [Read more here](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fh0047484)
 
-### Task Instructions
+#### Task Instructions
 1. The goal is to find the orange T as fast as possible. 
 2. There will be blut Ts and upside down orange Ts to distract the subject
 3. If theres an orange T, the subject must tap the 'Found it' button, else, tap on the 'No Orange T' button. 
  
  The images look like so:
- <br>
  ![](https://i.imgur.com/D492sRo.png)
-<br>
+
 
 The experiment was modeled after the 'Visual Search Experiment' explained in the psytoolkit website. [see here](https://www.psytoolkit.org/experiment-library/search.html)
 
@@ -114,7 +122,7 @@ This function is useful for recalling when the user last saw something in a clut
 The task implemented is modeled to the one used on the paper 'A Species Difference in Visuospatial Memory in Adult Humans and Rhesus Monkeys:  The Concentration Game' 
 [Read the paper here](https://escholarship.org/uc/item/58z1518q)
 
-### Task Instructions
+#### Task Instructions
 
 1. The user will get a set of 12 cards with no information and will tap on the card to reveal the icon behind the card.
 2. The subject will be expected to remeber the position and icon of the card previously tapped and will try to match the pairs of cards with the same icon to earn points. 
@@ -150,11 +158,5 @@ The task implemented is modeled to the one used on the paper 'A Species Differen
 ## Backlog
 
 The backlog for this project can be seen [here](https://docs.google.com/spreadsheets/d/137osHeU_mfkAXs8nBmP-5CZabjPBO2YhtUQrEQanrtI/edit?usp=sharing)
-
-## Appendix and FAQ
-
-:::info
-**Find this document incomplete?** Leave a comment!
-:::
 
 ###### tags: `Mobile Development` `Android`
