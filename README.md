@@ -97,8 +97,9 @@ The task was modeled after the paper 'Color coding in a visual search task.' [Re
 3. If theres an orange T, the subject must tap the 'Found it' button, else, tap on the 'No Orange T' button. 
  
  The images look like so:
+ <br>
  ![](https://i.imgur.com/D492sRo.png)
-
+<br>
 
 The experiment was modeled after the 'Visual Search Experiment' explained in the psytoolkit website. [see here](https://www.psytoolkit.org/experiment-library/search.html)
 
