@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ChooseGameActivity extends AppCompatActivity {
 
     @Override
@@ -30,5 +32,11 @@ public class ChooseGameActivity extends AppCompatActivity {
         intent.putExtra("GAME", 3);
         startActivity(intent);
     }
+    public void onClickLogout(View view){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 }
