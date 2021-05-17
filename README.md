@@ -122,26 +122,28 @@ The task implemented is modeled to the one used on the paper 'A Species Differen
 ## Features
  
 - [x] User can sign up with their personal email
-<img src="http://g.recordit.co/9skLBJECsw.gif" width=250><br>
+
+ <br><img src="http://g.recordit.co/9skLBJECsw.gif" width=250><br>
 
 - [x] User can sign in with the email they signed up with
- <img src="http://g.recordit.co/7bQeGvbw0H.gif" width=250><br>
+
+ <br><img src="http://g.recordit.co/7bQeGvbw0H.gif" width=250><br>
 - [x] User can choose a task to perform
 - [x] User can read about the task they are performing and why it's useful to their eveyday life
- <img src="http://g.recordit.co/vjUPLx7y2l.gif" width=250><br>
+ <br><img src="http://g.recordit.co/vjUPLx7y2l.gif" width=250><br>
  
 - [x] The user can perform the multitasking game
- <img src="http://g.recordit.co/VKOa2EoyRA.gif" width=250><br>
+  <br><img src="http://g.recordit.co/VKOa2EoyRA.gif" width=250><br>
 - [x] The user can perform the visual search game
- <img src="http://g.recordit.co/epV3rHba6F.gif" width=250><br>
+  <br><img src="http://g.recordit.co/epV3rHba6F.gif" width=250><br>
 - [x] The user can perform the memory game
- <img src="http://g.recordit.co/LRGX4drJTn.gif" width=250><br>
+  <br><img src="http://g.recordit.co/LRGX4drJTn.gif" width=250><br>
 - [x] The user can see the data collected at the end of the game
 - [x] User can track their performance and progress
- <img src="http://g.recordit.co/p1NyTEY9S3.gif" width=250><br>
+  <br><img src="http://g.recordit.co/p1NyTEY9S3.gif" width=250><br>
 - [x] The user's progress is saved in the cloud so researchers can access it everywhere
 - [x] The user can logout of their account
- <img src="http://g.recordit.co/iBMp7pf6iy.gif" width=250><br>
+  <br><img src="http://g.recordit.co/iBMp7pf6iy.gif" width=250><br>
 
 
 ## Backlog
