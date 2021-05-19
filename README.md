@@ -128,6 +128,11 @@ The task implemented is modeled to the one used on the paper 'A Species Differen
 2. The subject will be expected to remeber the position and icon of the card previously tapped and will try to match the pairs of cards with the same icon to earn points. 
 3. A timer will be keeping track of how long the user takes to complete all the pairs and this will be the final data collected. 
 
+## Authentication and Data Collection
+
+The authentication and data collection is done through Firebase Authentication and cloud storage services.
+The user's information is saved and uploades the Firebase's Firestore, where it's retrieved everytime the user asks for their progress. When the user is offline, the information is saved in the phone's cache and retireved from the Firestore as soon as the user is back online. 
+
 ## Features
  
 - [x] User can sign up with their personal email
@@ -137,21 +142,32 @@ The task implemented is modeled to the one used on the paper 'A Species Differen
 - [x] User can sign in with the email they signed up with
 
  <br><img src="http://g.recordit.co/7bQeGvbw0H.gif" width=250><br>
+ 
 - [x] User can choose a task to perform
 - [x] User can read about the task they are performing and why it's useful to their eveyday life
+
  <br><img src="http://g.recordit.co/vjUPLx7y2l.gif" width=250><br>
  
 - [x] The user can perform the multitasking game
+
   <br><img src="http://g.recordit.co/VKOa2EoyRA.gif" width=250><br>
+  
 - [x] The user can perform the visual search game
+
   <br><img src="http://g.recordit.co/epV3rHba6F.gif" width=250><br>
+  
 - [x] The user can perform the memory game
+
   <br><img src="http://g.recordit.co/LRGX4drJTn.gif" width=250><br>
+  
 - [x] The user can see the data collected at the end of the game
 - [x] User can track their performance and progress
+
   <br><img src="http://g.recordit.co/p1NyTEY9S3.gif" width=250><br>
+  
 - [x] The user's progress is saved in the cloud so researchers can access it everywhere
 - [x] The user can logout of their account
+
   <br><img src="http://g.recordit.co/iBMp7pf6iy.gif" width=250><br>
 
 
