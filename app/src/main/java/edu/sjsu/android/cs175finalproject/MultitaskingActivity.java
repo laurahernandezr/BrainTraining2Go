@@ -35,12 +35,12 @@ public class MultitaskingActivity extends AppCompatActivity {
     private int score = 0;
     private int rounds = 0;
     private int maxRounds = 0;
-    private int taskNumber = 1;
+    private int taskNumber = 4;
     private int singleTaskScore = 0;
     private int switchingTaskScore = 0;
     private int totalScore = 0;
     final private int MAX_ROUNDS_PRACTICE = 5;
-    final private int MAX_ROUNDS_DATACOLLECTION = 10;
+    final private int MAX_ROUNDS_DATACOLLECTION = 5;
     private FirebaseAuth mAuth;
     private int r;
 
@@ -48,7 +48,7 @@ public class MultitaskingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multitasking_view);
-        taskNumber = 1;
+        taskNumber = 4;
         viewsArray[0] = (ImageView)findViewById(R.id.topView);
         viewsArray[1] = (ImageView)findViewById(R.id.bottomView);
         fullView =  (ImageView)findViewById(R.id.FullImageView);
@@ -135,12 +135,12 @@ public class MultitaskingActivity extends AppCompatActivity {
 
         }else {
             if (taskNumber == 4 || taskNumber == 5){
-                singleTaskScore += score;
-                totalScore += score;
+                singleTaskScore++;
+                totalScore++;
                 score = 0;
             }else{
-                switchingTaskScore += score;
-                totalScore += score;
+                switchingTaskScore++;
+                totalScore++;
             }
             maxRounds = MAX_ROUNDS_DATACOLLECTION;
             if(rounds <= maxRounds)
@@ -160,6 +160,8 @@ public class MultitaskingActivity extends AppCompatActivity {
                 }
                 setImage();
             }
+            System.out.println("\n\n\n\n\n\n\n\n\n\nSingle task:" + singleTaskScore + "Task:" + taskNumber);
+            System.out.println("\n\n\n\n\n\n\n\n\n\nSwitching task:" + switchingTaskScore);
         }
 
         if(rounds >= maxRounds && taskNumber < 6 ){
@@ -209,7 +211,7 @@ public class MultitaskingActivity extends AppCompatActivity {
     }
 
     public void showInstruction(){
-        System.out.println("Instruction task:" + taskNumber);
+        System.out.println("\n\n\n\n\n\n\n\n\n\nInstruction task:" + taskNumber);
         System.out.println("Instruction round: " + rounds);
         Toast toast;
         if (taskNumber == 1 && rounds == 0 || taskNumber == 4  && rounds == 0){
@@ -246,15 +248,6 @@ public class MultitaskingActivity extends AppCompatActivity {
         reloadImages();
         if( rounds > maxRounds && taskNumber >= 6){
             Intent intent = new Intent(getBaseContext(), MultitaskingResults.class);
-            if(totalScore>0){
-                totalScore = totalScore/maxRounds;
-            }
-            if (singleTaskScore>0){
-                singleTaskScore = singleTaskScore/maxRounds;
-            }
-            if(switchingTaskScore>0){
-                switchingTaskScore = switchingTaskScore/maxRounds;
-            }
             intent.putExtra("totalAverage", totalScore);
             intent.putExtra("repeatingAverage", singleTaskScore);
             intent.putExtra("switchingAverage", switchingTaskScore);
