@@ -35,12 +35,12 @@ public class MultitaskingActivity extends AppCompatActivity {
     private int score = 0;
     private int rounds = 0;
     private int maxRounds = 0;
-    private int taskNumber = 4;
+    private int taskNumber = 0;
     private int singleTaskScore = 0;
     private int switchingTaskScore = 0;
     private int totalScore = 0;
     final private int MAX_ROUNDS_PRACTICE = 5;
-    final private int MAX_ROUNDS_DATACOLLECTION = 5;
+    final private int MAX_ROUNDS_DATACOLLECTION = 10;
     private FirebaseAuth mAuth;
     private int r;
 
@@ -48,7 +48,7 @@ public class MultitaskingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multitasking_view);
-        taskNumber = 4;
+        taskNumber = 0;
         viewsArray[0] = (ImageView)findViewById(R.id.topView);
         viewsArray[1] = (ImageView)findViewById(R.id.bottomView);
         fullView =  (ImageView)findViewById(R.id.FullImageView);
@@ -94,7 +94,7 @@ public class MultitaskingActivity extends AppCompatActivity {
            }
             wrongKey(viewsArray[viewNumber]);
         }
-        System.out.println(score);
+
         showInstruction();
     }
     public void onLeftClick(View view){
@@ -160,8 +160,7 @@ public class MultitaskingActivity extends AppCompatActivity {
                 }
                 setImage();
             }
-            System.out.println("\n\n\n\n\n\n\n\n\n\nSingle task:" + singleTaskScore + "Task:" + taskNumber);
-            System.out.println("\n\n\n\n\n\n\n\n\n\nSwitching task:" + switchingTaskScore);
+
         }
 
         if(rounds >= maxRounds && taskNumber < 6 ){
@@ -211,8 +210,6 @@ public class MultitaskingActivity extends AppCompatActivity {
     }
 
     public void showInstruction(){
-        System.out.println("\n\n\n\n\n\n\n\n\n\nInstruction task:" + taskNumber);
-        System.out.println("Instruction round: " + rounds);
         Toast toast;
         if (taskNumber == 1 && rounds == 0 || taskNumber == 4  && rounds == 0){
             if(taskNumber > 3){

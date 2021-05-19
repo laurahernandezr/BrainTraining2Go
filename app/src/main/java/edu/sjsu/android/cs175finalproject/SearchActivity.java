@@ -28,7 +28,7 @@ import java.util.Random;
 public class SearchActivity extends AppCompatActivity {
     private int score = 0;
     private int cur_round = 0;
-    private final int MAX_ROUNDS = 3;
+    private final int MAX_ROUNDS = 5;
 
     private final int MAX_T = 25;
     private final int MAX_ORANGE_T = 1;

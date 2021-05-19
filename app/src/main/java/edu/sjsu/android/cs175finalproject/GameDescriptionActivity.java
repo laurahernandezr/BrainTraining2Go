@@ -21,9 +21,7 @@ public class GameDescriptionActivity extends AppCompatActivity {
         gameTitle = (TextView)findViewById(R.id.game_title);
         gameDescription = (TextView)findViewById(R.id.game_description);
         gameUse = (TextView)findViewById(R.id.game_use);
-        //Hiding Button until implemented
-        Button b = (Button)findViewById(R.id.button2);
-        //b.setEnabled(false);
+
 
         gameType = getIntent().getIntExtra("GAME",-1);
         if (gameType == 0) {
