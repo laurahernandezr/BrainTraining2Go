@@ -36,7 +36,7 @@ The instructions for the specific tasks were taken from [psytoolkit](https://www
 
 If you are a total beginner to this, start here!
 
-1. Download the APK [here](https://drive.google.com/file/d/15wAE3tRkYGMVi_J_jrBDsLT9-lPXpqji/view?usp=sharing)
+1. Download the APK [here](https://drive.google.com/file/d/1Nd3AW9l5HxBtcAy3w4gVTwlmGKCs3zcT/view?usp=sharing)
 2. Run the APK on your simulator or Android phone.
 3. Sign up with your email.
 4. Choose the task you want to perform.
