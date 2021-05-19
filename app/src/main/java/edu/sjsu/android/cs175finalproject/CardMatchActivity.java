@@ -1,20 +1,27 @@
 package edu.sjsu.android.cs175finalproject;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.*;
 
-public class cardMatch extends AppCompatActivity {
+public class CardMatchActivity extends AppCompatActivity {
 
     TextView textView2;
 
@@ -30,6 +37,9 @@ public class cardMatch extends AppCompatActivity {
 
     int turn = 1;
     int playerPoints = 0;
+    long tStart;
+    private FirebaseAuth mAuth;
+    int r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,35 @@ public class cardMatch extends AppCompatActivity {
         frontOfCardsResources();
 
         Collections.shuffle(Arrays.asList(cardsArray));
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Check which round that was and update the round count in firebase
+        db.collection("MemoryScores").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Object data = document.getData().get("rounds");
+                        r = Integer.parseInt(String.valueOf(data));
+                        db.collection("MemoryScores").document(currentUser.getUid()).update("rounds",++r);
+
+                    } else {
+                        Map<String, Object> firstRounds = new HashMap<>();
+                        firstRounds.put("rounds",0);
+                        db.collection("MemoryScores").document(currentUser.getUid()).set(firstRounds);
+                    }
+                } else {
+                    Log.d("Firestore", "get failed with ", task.getException());
+
+                }
+            }
+        });
+
+
+        tStart = SystemClock.elapsedRealtime();
 
         iv_11.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,26 +377,14 @@ public class cardMatch extends AppCompatActivity {
                 iv_20.getVisibility() == View.INVISIBLE &&
                 iv_21.getVisibility() == View.INVISIBLE &&
                 iv_22.getVisibility() == View.INVISIBLE) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cardMatch.this);
-            alertDialogBuilder
-                    .setMessage("GAME OVER!\nScore: " + playerPoints)
-                    .setCancelable(false)
-                    .setPositiveButton("NEW", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(getApplicationContext(), cardMatch.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            finish();
-                        }
-                    });
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
+                    long tEnd = SystemClock.elapsedRealtime();
+                    long tDelta = tEnd - tStart;
+                    double elapsedSeconds = tDelta / 1000.0;
+                    Intent intent = new Intent(this, CardsResults.class);
+                    intent.putExtra("score", playerPoints);
+                    intent.putExtra("time", elapsedSeconds);
+                    intent.putExtra("round", r);
+                    startActivity(intent);
         }
     }
 

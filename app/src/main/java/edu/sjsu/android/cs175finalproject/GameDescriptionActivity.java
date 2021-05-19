@@ -13,7 +13,7 @@ public class GameDescriptionActivity extends AppCompatActivity {
     TextView gameTitle;
     TextView gameDescription;
     TextView gameUse;
-    Class instructionClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +21,7 @@ public class GameDescriptionActivity extends AppCompatActivity {
         gameTitle = (TextView)findViewById(R.id.game_title);
         gameDescription = (TextView)findViewById(R.id.game_description);
         gameUse = (TextView)findViewById(R.id.game_use);
-        //Hiding Button until implemented
-        Button b = (Button)findViewById(R.id.button2);
-        b.setEnabled(false);
+
 
         gameType = getIntent().getIntExtra("GAME",-1);
         if (gameType == 0) {
@@ -47,6 +45,12 @@ public class GameDescriptionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameInstructionsActivity.class);
         intent.putExtra("GAME", gameType);
         startActivity(intent);
+    }
+    public void onClickProgress(View view){
+        Intent intent = new Intent(this, ProgressActivity.class);
+        intent.putExtra("GAME", gameType);
+        startActivity(intent);
 
     }
+
 }

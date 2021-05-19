@@ -2,13 +2,25 @@ package edu.sjsu.android.cs175finalproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -23,22 +35,52 @@ public class MultitaskingActivity extends AppCompatActivity {
     private int score = 0;
     private int rounds = 0;
     private int maxRounds = 0;
-    private int taskNumber = 1;
+    private int taskNumber = 0;
     private int singleTaskScore = 0;
     private int switchingTaskScore = 0;
     private int totalScore = 0;
     final private int MAX_ROUNDS_PRACTICE = 5;
     final private int MAX_ROUNDS_DATACOLLECTION = 10;
+    private FirebaseAuth mAuth;
+    private int r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.multitasking_view);
-        taskNumber = 1;
+        taskNumber = 0;
         viewsArray[0] = (ImageView)findViewById(R.id.topView);
         viewsArray[1] = (ImageView)findViewById(R.id.bottomView);
         fullView =  (ImageView)findViewById(R.id.FullImageView);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Check which round that was and update the round count in firebase
+        db.collection("MultitaskingScores").document(currentUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Object data = document.getData().get("rounds");
+                        r = Integer.parseInt(String.valueOf(data));
+                        db.collection("MultitaskingScores").document(currentUser.getUid()).update("rounds",++r);
+
+                    } else {
+                        Map<String, Object> firstRounds = new HashMap<>();
+                        firstRounds.put("rounds",0);
+                        db.collection("MultitaskingScores").document(currentUser.getUid()).set(firstRounds);
+                    }
+                } else {
+                    Log.d("Firestore", "get failed with ", task.getException());
+
+                }
+            }
+        });
+
         showInstruction();
+
     }
     public void onRightClick(View view){
         if(imageNumber == 3 || imageNumber == 1 && viewNumber == 1 ||imageNumber == 2 && viewNumber == 0 ) {
@@ -52,7 +94,7 @@ public class MultitaskingActivity extends AppCompatActivity {
            }
             wrongKey(viewsArray[viewNumber]);
         }
-        System.out.println(score);
+
         showInstruction();
     }
     public void onLeftClick(View view){
@@ -93,12 +135,12 @@ public class MultitaskingActivity extends AppCompatActivity {
 
         }else {
             if (taskNumber == 4 || taskNumber == 5){
-                singleTaskScore += score;
-                totalScore += score;
+                singleTaskScore++;
+                totalScore++;
                 score = 0;
             }else{
-                switchingTaskScore += score;
-                totalScore += score;
+                switchingTaskScore++;
+                totalScore++;
             }
             maxRounds = MAX_ROUNDS_DATACOLLECTION;
             if(rounds <= maxRounds)
@@ -118,6 +160,7 @@ public class MultitaskingActivity extends AppCompatActivity {
                 }
                 setImage();
             }
+
         }
 
         if(rounds >= maxRounds && taskNumber < 6 ){
@@ -167,8 +210,6 @@ public class MultitaskingActivity extends AppCompatActivity {
     }
 
     public void showInstruction(){
-        System.out.println("Instruction task:" + taskNumber);
-        System.out.println("Instruction round: " + rounds);
         Toast toast;
         if (taskNumber == 1 && rounds == 0 || taskNumber == 4  && rounds == 0){
             if(taskNumber > 3){
@@ -204,18 +245,10 @@ public class MultitaskingActivity extends AppCompatActivity {
         reloadImages();
         if( rounds > maxRounds && taskNumber >= 6){
             Intent intent = new Intent(getBaseContext(), MultitaskingResults.class);
-            if(totalScore>0){
-                totalScore = totalScore/maxRounds;
-            }
-            if (singleTaskScore>0){
-                singleTaskScore = singleTaskScore/maxRounds;
-            }
-            if(switchingTaskScore>0){
-                switchingTaskScore = switchingTaskScore/maxRounds;
-            }
-            intent.putExtra("totalAverage", String.valueOf(totalScore));
-            intent.putExtra("repeatingAverage", String.valueOf(singleTaskScore));
-            intent.putExtra("switchingAverage", String.valueOf(switchingTaskScore));
+            intent.putExtra("totalAverage", totalScore);
+            intent.putExtra("repeatingAverage", singleTaskScore);
+            intent.putExtra("switchingAverage", switchingTaskScore);
+            intent.putExtra("round", r);
             startActivity(intent);
         }
     }

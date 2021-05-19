@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "470066241074",
+    "project_id": "braintraining2go",
+    "storage_bucket": "braintraining2go.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470066241074:android:ac09542c0af824b559a62b",
+        "android_client_info": {
+          "package_name": "edu.sjsu.android.cs175finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470066241074-l3v5qf9vgo8jktqmhe76l5gioldbkob0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGhtO16bTrCmkBZq-1UOHpiFc6VVAn-v8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470066241074-l3v5qf9vgo8jktqmhe76l5gioldbkob0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
